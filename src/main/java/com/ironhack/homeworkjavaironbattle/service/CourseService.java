@@ -1,7 +1,6 @@
 package com.ironhack.homeworkjavaironbattle.service;
 
 import com.ironhack.homeworkjavaironbattle.model.Course;
-import com.ironhack.homeworkjavaironbattle.model.Teacher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,5 +23,22 @@ public class CourseService {
 
     public Course findById(String id) {
         return courses.get(id);
+    }
+
+    public Course create(String name, double price) {
+        Course course = new Course(name, price);
+        courses.put(course.getCourseId(), course);
+        return course;
+    }
+
+    public double showProfit() {
+        double sum = 0;
+
+        for (Map.Entry<String, Course> courseEntry : courses.entrySet()) {
+            double price = courseEntry.getValue().getPrice();
+            sum += price;
+        }
+
+        return sum;
     }
 }
