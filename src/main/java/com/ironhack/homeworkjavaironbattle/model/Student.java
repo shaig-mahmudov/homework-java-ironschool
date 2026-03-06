@@ -17,7 +17,6 @@ public Student(String name, String address ,String email){
     this.name=name;
     this.address=address;
     this.email=email;
-
 }
     public String uniqueStudentId(){return UUID.randomUUID().toString();}
     //Getters
