@@ -3,16 +3,16 @@ package com.ironhack.homeworkjavaironbattle.model;
 import java.util.UUID;
 
 public class Teacher {
-private String teacherId;
-private String name;
-private double salary;
-
+    private String teacherId;
+    private String name;
+    private double salary;
 
     public Teacher(String name , double salary){
     this.teacherId=generateUniqueId();
     this.name=name;
     this.salary=salary;
-}
+    }
+
     public String getTeacherId(){return teacherId;}
     private String generateUniqueId() {return UUID.randomUUID().toString();}
     public String getName() {return name;}
