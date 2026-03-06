@@ -9,7 +9,7 @@ public class Course {
     private String name;
     private double price;
     private double money_earned;
-//    private @Nullable Teacher teacher;
+    private @Nullable Teacher teacher;
 
     public Course(String name, double price) {
         this.name = name;
@@ -39,15 +39,15 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
-//
-//    @Nullable
-//    public Teacher getTeacher() {
-//        return teacher;
-//    }
-//
-//    public void setTeacher(@Nullable Teacher teacher) {
-//        this.teacher = teacher;
-//    }
+
+    @Nullable
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(@Nullable Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public double getMoney_earned() {
         return money_earned;

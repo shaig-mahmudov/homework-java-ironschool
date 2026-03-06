@@ -2,11 +2,10 @@ package com.ironhack.homeworkjavaironbattle.model;
 
 import java.util.UUID;
 
-public class Teacher {
-private String teacherId;
-private String name;
-private double salary;
-
+    public class Teacher {
+    private String teacherId;
+    private String name;
+    private double salary;
 
     public Teacher(String name , double salary){
     this.teacherId=generateUniqueId();
