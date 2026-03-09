@@ -1,4 +1,4 @@
-package com.ironhack.homeworkjavaironbattle.model;
+package com.ironhack.homeworkjavaironschool.model;
 import jakarta.annotation.Nullable;
 
 import java.util.UUID;

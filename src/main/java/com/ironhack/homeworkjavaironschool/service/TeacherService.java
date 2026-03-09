@@ -1,7 +1,7 @@
-package com.ironhack.homeworkjavaironbattle.service;
+package com.ironhack.homeworkjavaironschool.service;
 
-import com.ironhack.homeworkjavaironbattle.model.Course;
-import com.ironhack.homeworkjavaironbattle.model.Teacher;
+import com.ironhack.homeworkjavaironschool.model.Course;
+import com.ironhack.homeworkjavaironschool.model.Teacher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
