@@ -1,14 +1,16 @@
-package com.ironhack.homeworkjavaionschool.service;
+package com.ironhack.homeworkjavaironschool.service;
 
 import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Student;
 import com.ironhack.homeworkjavaironschool.service.CourseService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class StudentService {
     private CourseService courseService;
     private final Map<String, Student> students = new HashMap<>();
