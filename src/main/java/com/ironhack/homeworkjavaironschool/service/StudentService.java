@@ -1,7 +1,8 @@
-package com.ironhack.homeworkjavaironbattle.service;
+package com.ironhack.homeworkjavaionschool.service;
 
-import com.ironhack.homeworkjavaironbattle.model.Course;
-import com.ironhack.homeworkjavaironbattle.model.Student;
+import com.ironhack.homeworkjavaironschool.model.Course;
+import com.ironhack.homeworkjavaironschool.model.Student;
+import com.ironhack.homeworkjavaironschool.service.CourseService;
 
 import java.util.ArrayList;
 import java.util.HashMap;

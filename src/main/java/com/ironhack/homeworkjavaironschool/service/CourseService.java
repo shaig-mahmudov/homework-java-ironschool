@@ -1,6 +1,6 @@
-package com.ironhack.homeworkjavaironbattle.service;
+package com.ironhack.homeworkjavaironschool.service;
 
-import com.ironhack.homeworkjavaironbattle.model.Course;
+import com.ironhack.homeworkjavaironschool.model.Course;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,5 +40,13 @@ public class CourseService {
         }
 
         return sum;
+    }
+
+    public double showMoneyEarned(String id) {
+        Course course = courses.get(id);
+        if (course != null) {
+            return course.getMoney_earned();
+        }
+        throw new IllegalArgumentException("Kurs tapılmadı: " + id);
     }
 }
