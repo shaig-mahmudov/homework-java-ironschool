@@ -55,4 +55,15 @@ public class CourseController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PatchMapping("/{id}")
+    public Course partialUpdateCourse(@PathVariable String id, @RequestBody Course course) {
+        return courseService.partialUpdate(id, course.getName(), course.getPrice(), course.getMoney_earned(), course.getTeacher());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable String id) {
+        courseService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

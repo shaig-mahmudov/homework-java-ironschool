@@ -52,4 +52,24 @@ public class TeacherService {
         assignedTeachers.put(teacher, course);
 
     }
+
+    public Teacher partialUpdate(String id, String name, Double salary) {
+        Teacher existingTeacher = findById(id);
+
+        if (name != null) {
+            existingTeacher.setName(name);
+        }
+        if (salary != null) {
+            existingTeacher.setSalary(salary);
+        }
+
+        return existingTeacher;
+    }
+
+    public void delete(String id) {
+        Teacher existingTeacher = findById(id);
+
+        teachers.remove(id);
+        assignedTeachers.remove(existingTeacher);
+    }
 }

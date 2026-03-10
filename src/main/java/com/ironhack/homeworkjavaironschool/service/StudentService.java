@@ -2,6 +2,7 @@ package com.ironhack.homeworkjavaironschool.service;
 
 import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Student;
+import com.ironhack.homeworkjavaironschool.model.Teacher;
 import com.ironhack.homeworkjavaironschool.service.CourseService;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class StudentService {
     private final Map<String, Student> students = new HashMap<>();
     public StudentService(){
         Student student1 = new Student("Ruzi" ,"Sumqgayit","ruzi@gmail.com");
-        Student student2 = new Student("Shaiq", "Baku","shaiq@gmail.com");
+        Student student2 = new Student("Shaig", "Baku","shaig@gmail.com");
         students.put(student1.getStudentId(), student1);
         students.put(student2.getStudentId(),student2);
 
@@ -24,9 +25,11 @@ public class StudentService {
     public List<Student> findAll(){
         return new ArrayList<>(students.values());
     }
+
     public Student findByID(String id){
         return students.get(id);
     }
+
     public Student create(String name, String address, String email ){
         Student student = new Student(name,address,email);
         students.put(student.getStudentId(),student);
@@ -47,6 +50,30 @@ public class StudentService {
         budget+=course.getPrice();
         course.setMoney_earned(budget);
         System.out.println("Success: Student " + studentId + " enrolled in " + course.getName());
+    }
+
+    public Student partialUpdate(String id, String name, String address, String email, Course course) {
+        Student existingStudent = findByID(id);
+
+        if (name != null) {
+            existingStudent.setName(name);
+        }
+        if (address != null) {
+            existingStudent.setAddress(address);
+        }
+        if (email != null) {
+            existingStudent.setEmail(email);
+        }
+        if (course.getCourseId() != null) {
+            existingStudent.setCourse(course);
+        }
+
+        return existingStudent;
+    }
+
+    public void delete(String id) {
+        findByID(id);
+        students.remove(id);
     }
 
 }

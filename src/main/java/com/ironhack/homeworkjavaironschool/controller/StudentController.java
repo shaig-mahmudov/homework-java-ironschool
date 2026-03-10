@@ -1,9 +1,11 @@
 package com.ironhack.homeworkjavaironschool.controller;
 
 
+import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Student;
 import com.ironhack.homeworkjavaironschool.service.StudentService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -43,6 +45,17 @@ public class StudentController {
         catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Enroll denied");
         }
+    }
+
+    @PatchMapping("/{id}")
+    public Student partialUpdateCourse(@PathVariable String id, @RequestBody Student student) {
+        return studentService.partialUpdate(id, student.getName(), student.getAddress(), student.getEmail(), student.getCourse());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable String id) {
+        studentService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

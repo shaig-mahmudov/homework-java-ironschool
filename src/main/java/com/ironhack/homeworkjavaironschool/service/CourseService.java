@@ -1,6 +1,7 @@
 package com.ironhack.homeworkjavaironschool.service;
 
 import com.ironhack.homeworkjavaironschool.model.Course;
+import com.ironhack.homeworkjavaironschool.model.Teacher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,6 +48,30 @@ public class CourseService {
         if (course != null) {
             return course.getMoney_earned();
         }
-        throw new IllegalArgumentException("Kurs tapılmadı: " + id);
+        throw new IllegalArgumentException("Course Not Found with id: " + id);
+    }
+
+    public Course partialUpdate(String id, String name, Double price, Double moneyEarned, Teacher teacher) {
+        Course existingCourse = findById(id);
+
+        if (name != null) {
+            existingCourse.setName(name);
+        }
+        if (price != null) {
+            existingCourse.setPrice(price);
+        }
+        if (moneyEarned != null) {
+            existingCourse.setMoney_earned(moneyEarned);
+        }
+        if (teacher.getTeacherId() != null) {
+            existingCourse.setTeacher(teacher);
+        }
+
+        return existingCourse;
+    }
+
+    public void delete(String id) {
+        findById(id);
+        courses.remove(id);
     }
 }
