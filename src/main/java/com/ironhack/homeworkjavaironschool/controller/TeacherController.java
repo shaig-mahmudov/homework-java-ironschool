@@ -1,8 +1,10 @@
 package com.ironhack.homeworkjavaironschool.controller;
 
+import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Teacher;
 import com.ironhack.homeworkjavaironschool.service.TeacherService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -49,5 +51,16 @@ public class TeacherController {
         } catch (NullPointerException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Teacher or course not found for provided IDs", e);
         }
+    }
+
+    @PatchMapping("/{id}")
+    public Teacher partialUpdateCourse(@PathVariable String id, @RequestBody Teacher teacher) {
+        return teacherService.partialUpdate(id, teacher.getName(), teacher.getSalary());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable String id) {
+        teacherService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
