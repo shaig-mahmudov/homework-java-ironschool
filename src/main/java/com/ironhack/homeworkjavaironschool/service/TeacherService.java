@@ -1,5 +1,6 @@
 package com.ironhack.homeworkjavaironschool.service;
 
+import com.ironhack.homeworkjavaironschool.exception.ResourceNotFoundException;
 import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Teacher;
 import org.springframework.stereotype.Service;
@@ -34,18 +35,32 @@ public class TeacherService {
     }
 
     public Teacher findById(String id) {
-        return teachers.get(id);
+        Teacher teacher = teachers.get(id);
+
+        if (teacher == null) {
+            throw new ResourceNotFoundException("Teacher not found with id: " + id);
+        }
+
+        return teacher;
     }
 
     public List<Teacher> findByName(String name) {
         return teachers.values().stream()
                 .filter(c -> c.getName().toLowerCase()
                         .contains(name.toLowerCase())).toList();
+
     }
 
     public void assign(String teacherId, String courseId) {
         Teacher teacher = teachers.get(teacherId);
         Course course = courseService.findById(courseId);
+
+        if (teacher == null) {
+            throw new ResourceNotFoundException("Teacher not found with:" + teacherId);
+        }
+        if (course == null) {
+            throw new ResourceNotFoundException("Course not found with:" + courseId);
+        }
 
         course.setTeacher(teacher);
 
@@ -68,6 +83,10 @@ public class TeacherService {
 
     public void delete(String id) {
         Teacher existingTeacher = findById(id);
+
+        if (existingTeacher == null) {
+            throw new ResourceNotFoundException("Teacher not found with id: " + id);
+        }
 
         teachers.remove(id);
         assignedTeachers.remove(existingTeacher);

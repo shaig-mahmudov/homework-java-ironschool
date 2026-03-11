@@ -1,5 +1,6 @@
 package com.ironhack.homeworkjavaironschool.service;
 
+import com.ironhack.homeworkjavaironschool.exception.ResourceNotFoundException;
 import com.ironhack.homeworkjavaironschool.model.Course;
 import com.ironhack.homeworkjavaironschool.model.Student;
 import com.ironhack.homeworkjavaironschool.model.Teacher;
@@ -15,7 +16,9 @@ import java.util.Map;
 public class StudentService {
     private CourseService courseService;
     private final Map<String, Student> students = new HashMap<>();
-    public StudentService(){
+    public StudentService(CourseService courseService){
+        this.courseService = courseService;
+
         Student student1 = new Student("Ruzi" ,"Sumqgayit","ruzi@gmail.com");
         Student student2 = new Student("Shaig", "Baku","shaig@gmail.com");
         students.put(student1.getStudentId(), student1);
@@ -27,7 +30,13 @@ public class StudentService {
     }
 
     public Student findByID(String id){
-        return students.get(id);
+        Student student = students.get(id);
+
+        if (student == null) {
+            throw new ResourceNotFoundException("Student not found with id: " + id);
+        }
+
+        return student;
     }
 
     public Student create(String name, String address, String email ){
@@ -72,7 +81,12 @@ public class StudentService {
     }
 
     public void delete(String id) {
-        findByID(id);
+        Student existingStudent = findByID(id);
+
+        if (existingStudent == null) {
+            throw new ResourceNotFoundException("Student not found with id: " + id);
+        }
+
         students.remove(id);
     }
 
