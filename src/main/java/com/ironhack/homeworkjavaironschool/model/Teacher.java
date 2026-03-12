@@ -11,7 +11,7 @@ import java.util.UUID;
     @NotNull(message = "Name is required")
     @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
-    @Positive(message = "Salary must be positive")
+    @Positive(message = "Salary must be positive number")
     private double salary;
 
     public Teacher(){}
