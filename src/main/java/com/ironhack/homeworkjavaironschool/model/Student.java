@@ -1,22 +1,28 @@
 package com.ironhack.homeworkjavaironschool.model;
 
 import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.UUID;
 
 public class Student {
     private String studentId;
+    @NotNull(message = "Name is required")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
     private String address;
     private  String email;
    @Nullable private Course course;
 
-public Student(String name, String address ,String email){
+   public Student() {}
+
+    public Student(String name, String address ,String email){
     this.studentId=uniqueStudentId();
     this.name=name;
     this.address=address;
     this.email=email;
-}
+    }
     public String uniqueStudentId(){return UUID.randomUUID().toString();}
     //Getters
     public String getStudentId(){return studentId;}
