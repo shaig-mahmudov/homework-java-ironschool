@@ -25,7 +25,7 @@ public class CourseService {
 
     public Course findById(String id) {
         Course course = courses.get(id);
-        if (course == null) {
+        if (course != null) {
             return courses.get(id);
         }
 
